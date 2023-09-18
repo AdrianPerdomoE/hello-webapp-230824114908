@@ -10,7 +10,7 @@
     <artifactId>spring-boot-starter-parent</artifactId>
     <version>3.1.1</version>
   </parent>
-  <name>Clinica animal Perdomo & Cordoba</name>
+  <name>Clinica animal Perdomo y Cordoba</name>
 
   <properties>
 
