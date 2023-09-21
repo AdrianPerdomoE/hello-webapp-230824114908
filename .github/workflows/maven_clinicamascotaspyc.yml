@@ -24,16 +24,17 @@ jobs:
       - name: Build and test with Maven
         run: |
             mvn clean install
-            
+            mvn jacoco:report
         
       - name: Check Code Coverage
         run: |
-          mvn jacoco:report
+    
           coverage=$(grep -Po '<counter type="LINE" missed="[0-9]+" covered="[0-9]+">' target/site/jacoco/jacoco.xml | grep -oP 'covered="\K[0-9]+')
            if [ "$coverage" -lt "80" ]; then
             echo "Code coverage is below the threshold. Coverage: $coverage%"
             exit 1
           fi
+          
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
