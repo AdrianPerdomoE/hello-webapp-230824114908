@@ -25,7 +25,10 @@ jobs:
         run: |
             mvn clean install
             mvn jacoco:report
-  
+
+      - name: Display the contents of jacoco.xml
+        run: cat target/site/jacoco/jacoco.xml
+        
       - name: Check Code Coverage
         run: |
           coverage=$(grep -Po '<counter type="LINE" missed="[0-9]+" covered="[0-9]+">' target/site/jacoco/jacoco.xml | grep -oP 'covered="\K[0-9]+')
