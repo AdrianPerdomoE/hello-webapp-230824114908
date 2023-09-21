@@ -270,7 +270,7 @@
                         <limits>
                             <limit>
                                 <counter>LINE</counter> 
-                                <value>80%</value> 
+                                <value>100%</value> 
                             </limit>
                         </limits>
                     </rule>
