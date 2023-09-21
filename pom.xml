@@ -261,9 +261,7 @@
             <goals>
               <goal>report</goal>
             </goals>
-          </execution>
-        </executions>
-        <configuration>
+            <configuration>
                 <rules>
                     <rule>
                         <element>PACKAGE</element>
@@ -276,6 +274,9 @@
                     </rule>
                 </rules>
             </configuration>
+          </execution>
+        </executions>
+        
       </plugin>
 
       <!-- Spring Boot Actuator displays build-related information if a git.properties
