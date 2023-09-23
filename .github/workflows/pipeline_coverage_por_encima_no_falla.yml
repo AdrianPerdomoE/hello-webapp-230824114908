@@ -5,14 +5,16 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ main ]
+    branches: [ maven ]
   pull_request:
-    branches: [ main ]
+    branches: [ maven ]
 
 jobs:
   build:
 
     runs-on: ubuntu-latest
+    env:
+      COVERAGE_THRESHOLD: 0
     strategy:
       matrix:
         java: [ '17' ]
@@ -27,3 +29,4 @@ jobs:
           cache: maven
       - name: Build with Maven Wrapper
         run: ./mvnw -B package
+      

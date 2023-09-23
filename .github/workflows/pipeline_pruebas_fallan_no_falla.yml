@@ -13,7 +13,10 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    env:
+      COVERAGE_THRESHOLD: 0
     strategy:
+    
       matrix:
         java: [ '17' ]
 
@@ -25,7 +28,7 @@ jobs:
           java-version: ${{matrix.java}}
           distribution: 'adopt'
           cache: maven
-      - name: Build with Maven Wrapper
-        run: ./mvnw -B package
+      - name: test
+        run: mvn test
         continue-on-error: true
       

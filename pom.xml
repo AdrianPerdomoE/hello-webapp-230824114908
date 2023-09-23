@@ -275,7 +275,7 @@
 								<limit>
 									<counter>LINE</counter>
 									<value>COVEREDRATIO</value>
-									<minimum>0.0</minimum>
+									<minimum>${coverage.threshold}</minimum>
 								</limit>
 							</limits>
 						</rule>
