@@ -275,7 +275,7 @@
 								<limit>
 									<counter>LINE</counter>
 									<value>COVEREDRATIO</value>
-									<minimum>${coverage.threshold}</minimum>
+									<minimum>${env.COVERAGE_THRESHOLD}</minimum>
 								</limit>
 							</limits>
 						</rule>
