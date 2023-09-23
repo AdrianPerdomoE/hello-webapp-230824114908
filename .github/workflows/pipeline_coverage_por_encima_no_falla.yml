@@ -13,7 +13,7 @@ jobs:
 
     runs-on: ubuntu-latest
     env:
-      COVERAGE_THRESHOLD: 0.0
+      COVERAGE_THRESHOLD: '0.0'
     strategy:
       matrix:
         java: [ '17' ]
