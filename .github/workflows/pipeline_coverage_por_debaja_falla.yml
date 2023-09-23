@@ -28,4 +28,4 @@ jobs:
           distribution: 'adopt'
           cache: maven
       - name: test coverage
-        run: mvn clean test
+        run: mvn clean install
