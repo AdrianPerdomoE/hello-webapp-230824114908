@@ -30,15 +30,6 @@ jobs:
 
       - name: Display the contents of jacoco.xml
         run: cat target/site/jacoco/jacoco.xml
-        
-     # - name: Check Code Coverage
-      #  run: |
-       #   coverage=$(grep -Po '<counter type="LINE" missed="[0-9]+" covered="[0-9]+">' target/site/jacoco/jacoco.xml | grep -oP 'covered="\K[0-9]+')
-        #  echo "Coverage value is: $coverage"
-         # if [ "$coverage" -lt "30" ]; then
-          #  echo "Code coverage is below the threshold. Coverage: $coverage%"
-           # exit 1
-          #fi
           
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2

@@ -27,7 +27,4 @@ jobs:
           distribution: 'adopt'
           cache: maven
       - name: Test coverage
-        run: |
-          mvn clean install
-          mvn jacoco:report
-      
+        run: mvn jacoco:report
