@@ -27,5 +27,7 @@ jobs:
           java-version: ${{matrix.java}}
           distribution: 'adopt'
           cache: maven
-      - name: prueba de cobertura
-        run: mvn jacoco:report
+      - name: test coverage
+        run: |
+          mvn clean install
+         
