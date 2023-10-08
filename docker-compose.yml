@@ -1,6 +1,13 @@
 version: "2.2"
 
 services:
+  web:
+    image: petclinic_adrian_alejandro:{{ TAG }}
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - COVERAGE_THRESHOLD=0.0
   mysql:
     image: mysql:8.0
     ports:
