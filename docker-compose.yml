@@ -3,7 +3,7 @@ version: "2.2"
 services:
  
   web:
-    image: "petclinic_adrian_alejandro:${TAG}" 
+    image: "petclinic_adrian_alejandro:v${TAG}" 
     build: .
     ports:
       - "8080:8080"

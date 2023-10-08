@@ -6,7 +6,7 @@ on:
       - maven
   workflow_dispatch:
 env:
-  TAG: ${{ github.run_attempt }}
+  TAG: ${{ github.run_number }}
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -63,6 +63,7 @@ jobs:
       - name: Start Docker Compose
         run: |          
           docker-compose up -d
+          curl http://localhost:8080
 
       - name: Clean Up
         run: docker-compose down --volumes
