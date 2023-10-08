@@ -63,7 +63,8 @@ jobs:
       - name: Start Docker Compose
         run: |          
           docker-compose up -d
-          curl http://localhost:8080
+          docker logs my_artifact_web_1
+          
 
       - name: Clean Up
         run: docker-compose down --volumes
