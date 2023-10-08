@@ -4,7 +4,7 @@ services:
  
   web:
     image: "petclinic_adrian_alejandro:v${TAG}" 
-    container_name: "petclinic_container_adrian_alejandro:v${TAG}" 
+    container_name: "petClinicContainerAPACv${TAG}" 
     build: .
     ports:
       - "8080:8080"
