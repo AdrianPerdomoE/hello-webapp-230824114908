@@ -60,13 +60,11 @@ jobs:
 
       - name: Debug Docker Compose YAML
         run: ls 
-          
-      - name: Modify Docker Compose YAML
+        
+      - name: Start Docker Compose
         run: |
           sed -i "s/{{ TAG }}/${{ steps.determine-version.outputs.version }}/g" docker-compose.yml
-
-      - name: Start Docker Compose
-        run: docker-compose up -d
+          docker-compose up -d
 
       - name: Clean Up
         run: docker-compose down --volumes
