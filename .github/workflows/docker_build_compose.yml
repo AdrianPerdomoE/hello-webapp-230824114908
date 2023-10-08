@@ -32,8 +32,13 @@ jobs:
         id: determine-version
         run: |
           echo "VERSION=$((GITHUB_RUN_NUMBER))"
-          echo "::set-output name=version::${VERSION}"
-
+          echo "{name}={version::${VERSION}}" >> $GITHUB_OUTPUT
+      
+      - name: Debug Docker Compose YAML
+        run: |
+          ls 
+          cat docker-compose.yml
+          
       - name: Modify Docker Compose YAML
         run: |
           sed -i "s/{{ TAG }}/${{ steps.determine-version.outputs.version }}/g" docker-compose.yml
