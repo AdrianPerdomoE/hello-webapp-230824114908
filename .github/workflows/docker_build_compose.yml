@@ -23,11 +23,38 @@ jobs:
       - name: Build and test with Maven
         run: |
             mvn clean install
+
+      - name: Create artifact
+        run: |
+          mkdir my_artifact
+          cp Dockerfile my_artifact/
+          cp docker-compose.yml my_artifact/
+          cp -r target my_artifact/
+          tar czvf my_artifact.tar.gz my_artifact/
+        working-directory: ${{ github.workspace }}
+
+      - name: Upload Archive
+        uses: actions/upload-artifact@v2
+        with:
+          name: my-artifact
+          path: my_artifact.tar.gz
     
   compose:
     runs-on: ubuntu-latest
     needs: build
     steps:
+
+
+      - name: Download Archive
+        uses: actions/download-artifact@v2
+        with:
+          name: my-artifact
+          path: my_artifact.tar.gz
+
+      - name: Extract Archive
+        run: tar xzvf my_artifact.tar.gz
+        working-directory: ${{ github.workspace }}
+
       - name: Determine Version
         id: determine-version
         run: |
@@ -36,7 +63,7 @@ jobs:
 
       - name: Set Working Directory
         run: cd $GITHUB_WORKSPACE
-        
+
       - name: Debug Docker Compose YAML
         run: ls 
           
