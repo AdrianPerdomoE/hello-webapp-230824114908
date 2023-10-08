@@ -30,7 +30,7 @@ jobs:
           cp dockerfile my_artifact/
           cp docker-compose.yml my_artifact/
           cp -r target my_artifact/
-          tar czvf my_artifact.tar.gz my_artifact/
+          tartar czvf my_artifact.tar.gz -C my_artifact .
         working-directory: ${{ github.workspace }}
 
       - name: Upload Archive
