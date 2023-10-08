@@ -57,7 +57,9 @@ jobs:
           echo "{name}={version::${VERSION}}" >> $GITHUB_OUTPUT
 
       - name: Set Working Directory
-        run: cd my_artifact
+        run:|
+          cd my_artifact
+          cd my_artifact
 
       - name: Debug Docker Compose YAML
         run: ls 
