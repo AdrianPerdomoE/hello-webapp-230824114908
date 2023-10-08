@@ -33,11 +33,12 @@ jobs:
         run: |
           echo "VERSION=$((GITHUB_RUN_NUMBER))"
           echo "{name}={version::${VERSION}}" >> $GITHUB_OUTPUT
-      
+
+      - name: Set Working Directory
+        run: cd $GITHUB_WORKSPACE
+        
       - name: Debug Docker Compose YAML
-        run: |
-          ls 
-          cat docker-compose.yml
+        run: ls 
           
       - name: Modify Docker Compose YAML
         run: |
