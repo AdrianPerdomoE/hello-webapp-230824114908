@@ -68,7 +68,7 @@ jobs:
 
       - name: Start Docker Compose
         run: |          
-          docker-compose build .
+          docker build -t "petclinic_adrian_alejandro:v${TAG}" .
           docker-compose push
           
           
