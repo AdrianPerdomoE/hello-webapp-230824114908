@@ -56,8 +56,9 @@ jobs:
       - name: Determine Version
         id: determine-version
         run: |
-          echo "VERSION=$((TAG))"
+          echo "VERSION=${TAG}"
           echo "{name}={version::${VERSION}}" >> $GITHUB_OUTPUT
+
 
       - name: Start Docker Compose
         run: |          
