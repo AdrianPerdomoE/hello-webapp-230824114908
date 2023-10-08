@@ -58,8 +58,9 @@ jobs:
 
       - name: Set Working Directory
         run: |
+          ls
           cd my_artifact
-          cd my_artifact
+          ls
 
       - name: Debug Docker Compose YAML
         run: ls 
