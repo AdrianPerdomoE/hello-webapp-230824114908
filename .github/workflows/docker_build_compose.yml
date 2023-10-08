@@ -27,7 +27,7 @@ jobs:
       - name: Create artifact
         run: |
           mkdir my_artifact
-          cp Dockerfile my_artifact/
+          cp dockerfile my_artifact/
           cp docker-compose.yml my_artifact/
           cp -r target my_artifact/
           tar czvf my_artifact.tar.gz my_artifact/
