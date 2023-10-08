@@ -5,7 +5,8 @@ on:
     branches:
       - maven
   workflow_dispatch:
-
+env:
+  TAG: ${GITHUB_RUN_NUMBER}
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -55,15 +56,11 @@ jobs:
       - name: Determine Version
         id: determine-version
         run: |
-          echo "VERSION=$((GITHUB_RUN_NUMBER))"
+          echo "VERSION=$((TAG))"
           echo "{name}={version::${VERSION}}" >> $GITHUB_OUTPUT
 
-      - name: Debug Docker Compose YAML
-        run: ls 
-        
       - name: Start Docker Compose
-        run: |
-          sed -i "s/{{ TAG }}/${{ steps.determine-version.outputs.version }}/g" docker-compose.yml
+        run: |          
           docker-compose up -d
 
       - name: Clean Up

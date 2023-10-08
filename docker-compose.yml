@@ -1,8 +1,15 @@
 version: "2.2"
 
 services:
+  config-replace:
+    image: chesire/docker-compose-config-replace
+    volumes:
+      - ./docker-compose.yml:/data/docker-compose.yml
+    command: ["sh", "-c", "cp /data/docker-compose.yml /data/docker-compose.yml.template && config-replace"]
+    environment:
+      - TAG=${TAG}
   web:
-    image: petclinic_adrian_alejandro:{{ TAG }}
+    image: petclinic_adrian_alejandro:$TAG 
     build: .
     ports:
       - "8080:8080"
