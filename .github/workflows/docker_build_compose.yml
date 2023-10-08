@@ -1,4 +1,5 @@
-name: Build of the container
+name: Building of the container
+
 on:
   push:
     branches:
@@ -40,5 +41,5 @@ jobs:
       - name: Start Docker Compose
         run: docker-compose up -d
 
-    - name: Clean Up
-      run: docker-compose down --volumes
+      - name: Clean Up
+        run: docker-compose down --volumes
