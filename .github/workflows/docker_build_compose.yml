@@ -56,7 +56,7 @@ jobs:
       - name: Determine Version
         id: determine-version
         run: |
-          echo "VERSION=${env.TAG}"
+          echo "VERSION=${TAG}"
           echo "{name}={version::${VERSION}}" >> $GITHUB_OUTPUT
 
 
