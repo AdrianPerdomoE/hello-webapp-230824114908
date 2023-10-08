@@ -30,14 +30,13 @@ jobs:
           cp dockerfile my_artifact/
           cp docker-compose.yml my_artifact/
           cp -r target my_artifact/
-          tar czvf my_artifact.tar.gz -C my_artifact .
         working-directory: ${{ github.workspace }}
 
       - name: Upload Archive
         uses: actions/upload-artifact@v2
         with:
           name: my-artifact
-          path: my_artifact.tar.gz
+          path: my_artifact
     
   compose:
     runs-on: ubuntu-latest
@@ -49,11 +48,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: my-artifact
-          path: my_artifact.tar.gz
-
-      - name: Extract Archive
-        run: tar xzvf my_artifact.tar.gz
-        working-directory: ${{ github.workspace }}
+          path: my_artifact
 
       - name: Determine Version
         id: determine-version
@@ -62,7 +57,7 @@ jobs:
           echo "{name}={version::${VERSION}}" >> $GITHUB_OUTPUT
 
       - name: Set Working Directory
-        run: cd $GITHUB_WORKSPACE
+        run: cd my_artifact
 
       - name: Debug Docker Compose YAML
         run: ls 
