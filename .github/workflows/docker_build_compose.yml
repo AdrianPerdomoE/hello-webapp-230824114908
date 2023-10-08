@@ -57,7 +57,7 @@ jobs:
           echo "{name}={version::${VERSION}}" >> $GITHUB_OUTPUT
 
       - name: Set Working Directory
-        run:|
+        run: |
           cd my_artifact
           cd my_artifact
 
