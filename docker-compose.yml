@@ -3,7 +3,7 @@ version: "2.2"
 services:
  
   web:
-    image: "petclinic_adrian_alejandro:v${TAG}" 
+    image: "ghcr.io/${{ github.repository_owner }}/petclinic_adrian_alejandro:v${TAG}" 
     container_name: "petClinicContainerAPACv${TAG}" 
     build: .
     ports:
