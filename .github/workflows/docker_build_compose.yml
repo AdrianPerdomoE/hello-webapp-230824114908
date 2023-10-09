@@ -71,17 +71,14 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: set lower case owner name
+      - name: set lower case owner name and Start Docker Compose
         run: |
           echo "OWNER_LC=${OWNER,,}" >>${GITHUB_ENV}
+          docker-compose build
+          docker-compose push
         env:
           OWNER: '${{ github.repository_owner }}'
           DOCKER_IMAGE_NAME: ghcr.io/${{ env.OWNER_LC}}/petclinic_adrian_alejandro:v${{ github.run_number }}
-      - name: Start Docker Compose
-        run: | 
-          docker-compose build
-          docker-compose push
-          
-          
+           
       - name: Clean Up
         run: docker-compose down --volumes
