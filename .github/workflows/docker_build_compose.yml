@@ -76,7 +76,7 @@ jobs:
           echo "OWNER_LC=${OWNER,,}" >>${GITHUB_ENV}
         env:
           OWNER: '${{ github.repository_owner }}'
-          DOCKER_IMAGE_NAME: ghcr.io/${{OWNER}}/petclinic_adrian_alejandro:v${{ github.run_number }}
+          DOCKER_IMAGE_NAME: ghcr.io/${{OWNER_LC}}/petclinic_adrian_alejandro:v${{ github.run_number }}
       - name: Start Docker Compose
         run: | 
           docker-compose build
