@@ -4,7 +4,9 @@ on:
     branches: [ maven ]
   pull_request:
     branches: [ maven ]
-
+permissions:
+    id-token: write
+    contents: read
 env:
   SECRETVALUE: ''
 
