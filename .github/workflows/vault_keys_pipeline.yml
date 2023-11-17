@@ -1,0 +1,54 @@
+name: Secret from KeyVault
+on:
+  push:
+    branches: [ maven ]
+  pull_request:
+    branches: [ maven ]
+
+env:
+  SECRETVALUE: ''
+
+jobs:
+  retrieveWithAction:
+    runs-on: ubuntu-latest
+    outputs:
+      id: mySecrets
+      username: ${{ steps.mySecrets.outputs.username }}
+      password: ${{ steps.mySecrets.outputs.password }}
+    steps:  
+    - uses: Azure/login@v1
+      with:
+        creds: ${{secrets.AZURE_CREDENTIALS}}
+    - uses: Azure/get-keyvault-secrets@v1
+      with: 
+        keyvault: 'ClinicaMascotasPyC'
+        secrets: 'url,username,password'  # Agrega 'username' y 'password' aquí
+    - name: Set Outputs
+      run: |
+        echo "url=${{ steps.mySecrets.outputs.url }}" >> $GITHUB_ENV
+        echo "username=${{ steps.mySecrets.outputs.username }}" >> $GITHUB_ENV
+        echo "password=${{ steps.mySecrets.outputs.password }}" >> $GITHUB_ENV
+
+  build:
+    needs: retrieveWithAction
+    runs-on: ubuntu-latest
+    env:
+      COVERAGE_THRESHOLD: '0.0'
+      URL: ${{ needs.retrieveWithAction.outputs.url }}
+      USERNAME: ${{ needs.retrieveWithAction.outputs.username }}
+      PASSWORD: ${{ needs.retrieveWithAction.outputs.password }}
+   
+    strategy:
+      matrix:
+        java: [ '17' ]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK ${{ matrix.java }}
+        uses: actions/setup-java@v2
+        with:
+          java-version: ${{ matrix.java }}
+          distribution: 'adopt'
+          cache: maven
+      - name: Test coverage
+        run: mvn clean install
